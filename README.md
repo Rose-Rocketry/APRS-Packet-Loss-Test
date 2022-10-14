@@ -1,7 +1,7 @@
 # APRS Packet Loss Measurement
 
 ## How to run
-1. Generate packets with `generate.sh`
+1. (optional) Re-generate `packets.wav` with `generate.sh`
 2. Open `transmit.grc` in GNU Radio Companion and start transmitting
 3. Run `receive.py` to start the receiver. Wait *at least 70 seconds* after making a change before taking a measurement to give the system time to stabilize.
 
