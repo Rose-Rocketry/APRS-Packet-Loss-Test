@@ -2,6 +2,8 @@ from subprocess import Popen, PIPE
 
 all_procs: list[Popen] = []
 
+PACKET_LOOP_COUNT = 100
+PACKET_ANALYSIS_LENGTH = 100
 
 def main():
     rtl_fm = Popen(
@@ -27,15 +29,16 @@ def main():
             if last_id is None:
                 last_id = id
                 was_lost.append(False)
+                print("First packet received")
                 continue
 
-            skipped = id - (last_id + 1)
+            skipped = (id - (last_id + 1) + PACKET_LOOP_COUNT) % PACKET_LOOP_COUNT
             last_id = id
             was_lost += ([True] * skipped)
             was_lost.append(False)
 
-            if len(was_lost) > 100:
-                was_lost = was_lost[-100:]
+            if len(was_lost) > PACKET_ANALYSIS_LENGTH:
+                was_lost = was_lost[-PACKET_ANALYSIS_LENGTH:]
 
             mapped = "".join(map(lambda x: "_" if x else "X", was_lost))
 
