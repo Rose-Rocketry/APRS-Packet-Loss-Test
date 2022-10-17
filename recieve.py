@@ -16,8 +16,7 @@ def main():
     all_procs.append(rtl_fm)
 
     direwolf = Popen([
-        "direwolf", "-t", "0", "-n", "1", "-r", "24000", "-b", "16", "-q", "d",
-        "-"
+        "direwolf", "-t", "0", "-n", "1", "-r", "24000", "-b", "16", "-q", "d"
     ],
                      stdin=rtl_fm.stdout,
                      stdout=DEVNULL)
