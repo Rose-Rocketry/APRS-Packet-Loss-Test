@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  aprs-transmitter:
+    image: aprs-transmitter
+    # restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    # privileged: true
+    # stop_signal: SIGINT
